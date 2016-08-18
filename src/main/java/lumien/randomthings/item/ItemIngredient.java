@@ -1,39 +1,33 @@
 package lumien.randomthings.item;
 
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
-
 import lumien.randomthings.block.ModBlocks;
 import lumien.randomthings.config.Features;
 import lumien.randomthings.entitys.EntityArtificialEndPortal;
-import lumien.randomthings.potion.ModPotions;
+import lumien.randomthings.lib.IRTItemColor;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
-import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.potion.PotionEffect;
-import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
-import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.client.FMLClientHandler;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.oredict.OreDictionary;
 
-public class ItemIngredient extends ItemBase
+public class ItemIngredient extends ItemBase implements IRTItemColor
 {
 	static int counter = 0;
 
 	public enum INGREDIENT
 	{
-		SAKANADE_SPORES("sakanadeSpores"), EVIL_TEAR("evilTear"), ECTO_PLASM("ectoPlasm"), SPECTRE_INGOT("spectreIngot");
+		SAKANADE_SPORES("sakanadeSpores"), EVIL_TEAR("evilTear"), ECTO_PLASM("ectoPlasm"), SPECTRE_INGOT("spectreIngot"), BIOME_SENSOR("biomeSensor");
 
 		public String name;
 
@@ -119,15 +113,32 @@ public class ItemIngredient extends ItemBase
 					if (!worldIn.isRemote)
 					{
 						BlockPos portalCenter = pos.down(3);
-						worldIn.spawnEntityInWorld(new EntityArtificialEndPortal(worldIn, portalCenter.getX()+0.5, portalCenter.getY(), portalCenter.getZ()+0.5));
+						worldIn.spawnEntityInWorld(new EntityArtificialEndPortal(worldIn, portalCenter.getX() + 0.5, portalCenter.getY(), portalCenter.getZ() + 0.5));
 						stack.stackSize--;
 					}
-					
+
 					return EnumActionResult.SUCCESS;
 				}
 			}
 		}
 
 		return EnumActionResult.PASS;
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public int getColorFromItemstack(ItemStack stack, int tintIndex)
+	{
+		if (stack.getItemDamage() == INGREDIENT.BIOME_SENSOR.id && tintIndex == 1)
+		{
+			EntityPlayer player = FMLClientHandler.instance().getClientPlayerEntity();
+
+			if (player != null)
+			{
+				return ModBlocks.biomeStone.colorMultiplier(null, player.worldObj, player.getPosition(), 0);
+			}
+		}
+
+		return -1;
 	}
 }

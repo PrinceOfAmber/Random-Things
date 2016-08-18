@@ -49,6 +49,8 @@ tile.filteredItemRedirector.name=Filtered Item Redirector
 tile.filteredSuperLubricentPlatform.name=Filtered Super Lubricent Platform
 tile.redstoneObserver.name=Redstone Observer
 tile.biomeRadar.name=Biome Radar
+tile.ironDropper.name=Iron Dropper
+tile.itemProjector.name=[WIP] Item Projector
 
 tile.spectrePlank.name=Spectre Planks
 tile.spectreSapling.name=Spectre Sapling
@@ -176,6 +178,7 @@ item.ingredient.sakanadeSpores.name=Sakanade Spores
 item.ingredient.evilTear.name=Evil Tear
 item.ingredient.ectoPlasm.name=Ectoplasm
 item.ingredient.spectreIngot.name=Spectre Ingot
+item.ingredient.biomeSensor.name=Biome Sensor
 
 tooltip.general.shift=Hold §6Shift§7 for more information
 tooltip.positionFilter.dimension=Dimension: %d
@@ -197,6 +200,23 @@ tooltip.itemFilter.whitelist=Whitelist
 tooltip.itemFilter.blacklist=Blacklist
 
 tooltip.spectreAnchor.item=Anchored
+
+tooltip.ironDropper.redstoneMode.pulse=Eject when pulsed
+tooltip.ironDropper.redstoneMode.repeatPowered=Eject continuously while powered
+tooltip.ironDropper.redstoneMode.repeat=Eject continuously
+tooltip.ironDropper.pickupDelay.none=No pickup delay
+tooltip.ironDropper.pickupDelay.5=5 Tick pickup delay
+tooltip.ironDropper.pickupDelay.20=20 Tick pickup delay
+tooltip.ironDropper.randomMotion.yes=Random Velocity
+tooltip.ironDropper.randomMotion.no=Exact Velocity
+tooltip.ironDropper.effects.none=No effects
+tooltip.ironDropper.effects.soundOnly=Sound effects
+tooltip.ironDropper.effects.particlesOnly=Particle effects
+tooltip.ironDropper.effects.both=Sound & Particle effects
+
+tooltip.itemProjector.selectionMode.first=Start from first slot
+tooltip.itemProjector.selectionMode.last=Start from last slot
+tooltip.itemProjector.selectionMode.biggest=Select biggest stack
 
 gui.basicRedstoneInterface.notarget=No Target
 gui.basicRedstoneInterface.targetX=Target-X: %s
@@ -224,4 +244,6 @@ item.enderLetter.receiver=Receiver: %s
 item.enderLetter.noPlayer=%s does not seem to reside in this world
 item.enderLetter.noSpace=The letter appears to get rejected
 
-entity.RandomThings.spirit.name=Spirit
+entity.randomthings.spirit.name=Spirit
+
+fluid.biomeEssence=Biome Essence

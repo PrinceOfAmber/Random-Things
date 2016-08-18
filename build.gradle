@@ -29,7 +29,7 @@ dependencies {
     deobfCompile "mezz.jei:jei_1.9.4:3.4.0.204"
 }
 
-version = "3.7.3"
+version = "3.7.5"
 group= "lumien.randomthings"
 
 jar {
@@ -39,7 +39,7 @@ jar {
 }
 
 minecraft {
-    version = "1.10-12.18.0.2000-1.10.0"
+    version = "1.10.2-12.18.0.2006-1.10.0"
     runDir = "run"
     
     // the mappings can be changed at any time, and must be in the following format.

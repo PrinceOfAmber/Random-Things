@@ -2,7 +2,6 @@ package lumien.randomthings.block;
 
 import java.awt.Color;
 
-import lumien.randomthings.item.ItemPositionFilter;
 import lumien.randomthings.item.ModItems;
 import lumien.randomthings.lib.IRTBlockColor;
 import lumien.randomthings.tileentity.TileEntityBiomeRadar;
@@ -22,7 +21,6 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -39,6 +37,19 @@ public class BlockBiomeRadar extends BlockContainerBase implements IRTBlockColor
 	public TileEntity createTileEntity(World world, IBlockState state)
 	{
 		return new TileEntityBiomeRadar();
+	}
+	
+	@Override
+	public void breakBlock(World worldIn, BlockPos pos, IBlockState state)
+	{
+		TileEntityBiomeRadar radar = (TileEntityBiomeRadar) worldIn.getTileEntity(pos);
+		
+		if (radar.getCurrentCrystal()!=null)
+		{
+			WorldUtil.spawnItemStack(worldIn, pos.getX(), pos.getY(), pos.getZ(), radar.getCurrentCrystal());
+		}
+		
+		super.breakBlock(worldIn, pos, state);
 	}
 	
 	@Override

@@ -4,15 +4,12 @@ import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 
-import akka.io.Tcp.Message;
 import lumien.randomthings.client.particles.EntityColoredSmokeFX;
 import lumien.randomthings.item.ItemBiomeCrystal;
 import lumien.randomthings.item.ItemPositionFilter;
 import lumien.randomthings.item.ModItems;
 import lumien.randomthings.network.MessageUtil;
 import lumien.randomthings.network.messages.sync.MessageBiomeRadarAntenna;
-import lumien.randomthings.tileentity.TileEntityBiomeRadar.STATE;
-import lumien.randomthings.util.WorldUtil;
 import lumien.randomthings.util.client.RenderUtils;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
@@ -133,12 +130,15 @@ public class TileEntityBiomeRadar extends TileEntityBase implements ITickable
 				{
 					String biomeName = antennaBiomes[i];
 					Biome biome = Biome.REGISTRY.getObject(new ResourceLocation(biomeName));
-					Color color = new Color(RenderUtils.getBiomeColor(null, biome, this.pos));
+					if (biome != null)
+					{
+						Color color = new Color(RenderUtils.getBiomeColor(null, biome, this.pos));
 
-					EntityColoredSmokeFX particle = new EntityColoredSmokeFX(this.worldObj, i < 2 ? this.pos.getX() + 1.5 - i * 2 : this.pos.getX() + 0.5, this.pos.getY() + 4.1, i > 1 ? this.pos.getZ() + 1.5 - (i - 2) * 2 : this.pos.getZ() + 0.5, 0, 0, 0);
-					particle.setRBGColorF(1F / 255F * color.getRed(), 1F / 255F * color.getGreen(), 1F / 255F * color.getBlue());
+						EntityColoredSmokeFX particle = new EntityColoredSmokeFX(this.worldObj, i < 2 ? this.pos.getX() + 1.5 - i * 2 : this.pos.getX() + 0.5, this.pos.getY() + 4.1, i > 1 ? this.pos.getZ() + 1.5 - (i - 2) * 2 : this.pos.getZ() + 0.5, 0, 0, 0);
+						particle.setRBGColorF(1F / 255F * color.getRed(), 1F / 255F * color.getGreen(), 1F / 255F * color.getBlue());
 
-					Minecraft.getMinecraft().effectRenderer.addEffect(particle);
+						Minecraft.getMinecraft().effectRenderer.addEffect(particle);
+					}
 				}
 			}
 		}

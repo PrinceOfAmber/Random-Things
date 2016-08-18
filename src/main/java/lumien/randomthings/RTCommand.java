@@ -3,13 +3,10 @@ package lumien.randomthings;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Set;
 
-import lumien.randomthings.handler.spectre.SpectreHandler;
 import lumien.randomthings.item.ItemBiomeCrystal;
 import lumien.randomthings.item.ItemPositionFilter;
 import lumien.randomthings.item.ModItems;
-import mezz.jei.NbtIgnoreList;
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommandSender;
@@ -22,7 +19,6 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.fml.common.registry.GameData;
 
@@ -46,7 +42,7 @@ public class RTCommand extends CommandBase
 	{
 		if (args.length == 1)
 		{
-			return getListOfStringsMatchingLastWord(args, new String[] { "setBiomeCrystal", "generateBiomeCrystalChests","tpFilter" });
+			return getListOfStringsMatchingLastWord(args, new String[] { "generateBiomeCrystalChests", "setBiomeCrystal", "tpFilter" });
 		}
 		else if (args.length == 2)
 		{
@@ -121,8 +117,8 @@ public class RTCommand extends CommandBase
 				if ((held = player.getHeldItemMainhand()) != null && held.getItem() == ModItems.positionFilter)
 				{
 					BlockPos pos = ItemPositionFilter.getPosition(held);
-					
-					player.connection.setPlayerLocation(pos.getX(), pos.getY()+150, pos.getZ(), player.rotationYaw, player.rotationPitch);
+
+					player.connection.setPlayerLocation(pos.getX(), pos.getY() + 150, pos.getZ(), player.rotationYaw, player.rotationPitch);
 				}
 			}
 		}

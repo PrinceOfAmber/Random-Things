@@ -8,7 +8,6 @@ import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.EnumDyeColor;
 import net.minecraft.item.Item;
 import net.minecraftforge.client.model.ModelLoader;
-import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class ItemModels
 {
@@ -66,6 +65,8 @@ public class ItemModels
 		registerBlock(ModBlocks.filteredSuperLubricentPlatform);
 		registerBlock(ModBlocks.redstoneObserver);
 		registerBlock(ModBlocks.biomeRadar);
+		registerBlock(ModBlocks.ironDropper);
+		registerBlock(ModBlocks.itemProjector);
 		
 		registerBlock(ModBlocks.spectreLeaf);
 		registerBlock(ModBlocks.spectreLog);
